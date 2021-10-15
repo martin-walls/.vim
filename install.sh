@@ -102,4 +102,4 @@ link_file () {
 
 THISDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
 
-link_file "$THISDIR/vimrc.symlink" "$HOME/.vimrc"
+link_file "$THISDIR/vimrc" "$HOME/.vimrc"
