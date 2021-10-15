@@ -37,6 +37,8 @@ Plug 'tmsvg/pear-tree'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'itchyny/lightline.vim'
+
 call plug#end()
 
 " pear tree
@@ -56,3 +58,7 @@ let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 
+" make lightline show
+set laststatus=2
+" disable default -- INSERT -- etc
+set noshowmode
