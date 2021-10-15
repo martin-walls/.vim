@@ -33,11 +33,17 @@ colorscheme onedark
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
+" bracket auto close
 Plug 'tmsvg/pear-tree'
 
+" lots of languages support
 Plug 'sheerun/vim-polyglot'
 
+" lightline bottom bar
 Plug 'itchyny/lightline.vim'
+
+" git integration
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -62,3 +68,7 @@ let g:pear_tree_smart_backspace = 1
 set laststatus=2
 " disable default -- INSERT -- etc
 set noshowmode
+" set onedark colorscheme for lightline
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
