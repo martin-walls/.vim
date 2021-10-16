@@ -45,6 +45,18 @@ Plug 'itchyny/lightline.vim'
 " git integration
 Plug 'tpope/vim-fugitive'
 
+" latex
+Plug 'lervag/vimtex'
+let g:tex_flavor='latex'
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+Plug 'sirver/ultisnips'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsEditSplit = 'context'
+
 call plug#end()
 
 " pear tree
@@ -99,3 +111,10 @@ let g:lightline = {
 " save and load code folds automatically
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+
+
+augroup vimtex_auto_compile_clean
+  au!
+  au User VimtexEventQuit VimtexClean
+  au User VimtexEventInitPost VimtexCompile
+augroup END
