@@ -56,9 +56,31 @@ let g:pear_tree_pairs = {
   \ "'": {'closer': "'"},
   \ '"': {'closer': '"'},
   \ '/\*': {'closer': '\*/'},
-  \ '<!--': {'closer': '-->'},
-  \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
+  \ '<!--': {'closer': '-->'}
   \ }
+
+" filetype specific pairs
+augroup html_pairs
+  autocmd!
+  autocmd FileType html let b:pear_tree_pairs = {
+    \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
+    \ }
+augroup END
+
+augroup js_pairs
+  autocmd!
+  autocmd FileType js let b:pear_tree_pairs = {
+    \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
+    \ }
+augroup END
+
+augroup latex_pairs
+  autocmd!
+  autocmd FileType tex let b:pear_tree_pairs = {
+    \ '$': {'closer': '$'}
+    \ }
+augroup END
+
 " smart pairs
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
@@ -72,3 +94,8 @@ set noshowmode
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ }
+
+
+" save and load code folds automatically
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
