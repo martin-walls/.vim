@@ -120,8 +120,8 @@ snippet verb "Inline verbatim" w
 \verb|$1|$0
 endsnippet
 
-context "math()"
 # maths notation
+context "math()"
 snippet 10e "Scientific form" wA
 \times 10^{$1}$0
 endsnippet
@@ -131,15 +131,18 @@ snippet bigo "Big-O notation" wA
 endsnippet
 
 # fractions
+context "math()"
 snippet // "Fraction" iA
 \frac{$1}{$2}$0
 endsnippet
 
+context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
 \frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 # find brackets on top of fraction
+context "math()"
 priority 1000
 snippet '^.*\)/' "() Fraction" wrA
 `!p
@@ -155,31 +158,38 @@ snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
 
+context "math()"
 priority 10
 snippet bar "bar" iA
 \overline{$1}$0
 endsnippet
+context "math()"
 priority 100
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv = match.group(1)`}
 endsnippet
 
 priority 10
+context "math()"
 snippet hat "hat" iA
 \hat{$1}$0
 endsnippet
 priority 100
+context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv = match.group(1)`}
 endsnippet
 
 # brackets with left/right
+context "math()"
 snippet @( "Round brackets" iA
 \left ( $1 \right )$0
 endsnippet
+context "math()"
 snippet @[ "Square brackets" iA
 \left [ $1 \right ]$0
 endsnippet
+context "math()"
 snippet @{ "Curly brackets" iA
 \left { $1 \right }$0
 endsnippet
