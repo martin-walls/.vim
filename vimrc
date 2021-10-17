@@ -45,6 +45,9 @@ Plug 'itchyny/lightline.vim'
 " git integration
 Plug 'tpope/vim-fugitive'
 
+" fuzzy file search
+Plug 'ctrlpvim/ctrlp.vim'
+
 " latex
 Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
@@ -102,9 +105,16 @@ let g:pear_tree_smart_backspace = 1
 set laststatus=2
 " disable default -- INSERT -- etc
 set noshowmode
-" set onedark colorscheme for lightline
+" lightline config
 let g:lightline = {
   \ 'colorscheme': 'onedark',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead'
+  \ },
   \ }
 
 
