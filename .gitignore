@@ -2,3 +2,4 @@ plugged/
 .netrwbook
 .netrwhist
 view/
+pack/bundle/start/vim-mucomplete
