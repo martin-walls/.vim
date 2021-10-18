@@ -172,4 +172,8 @@ map <silent> <F3> :call BufferList()<CR>
 " spellcheck
 set spelllang=en
 " enable spellcheck in tex files
-au FileType tex set spell
+au FileType tex setlocal spell
+
+" snippets file syntax highlighting
+au BufNewFile,BufRead *.snippets set ft=snippets
+au FileType snippets setlocal syntax=snippets
