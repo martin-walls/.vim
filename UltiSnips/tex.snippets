@@ -48,7 +48,7 @@ snippet bit "Itemize environment" bA
 \end{itemize}
 endsnippet
 
-context "list()"
+context "env('enumerate')"
 snippet item "Item" b
 \item % ($1)
 $0
@@ -114,6 +114,21 @@ snippet bfrit "Itemized frame environment" bA
 \item $0
 \end{itemize}
 \end{frame}
+endsnippet
+
+snippet bfi "Figure" bA
+\begin{figure}
+	\centering
+	$0
+	\caption{${2:<caption>}}
+	\label{fig:$1}
+\end{figure}
+endsnippet
+
+snippet btbl "Tabular" bA
+\begin{tabular}{$1}
+$0
+\end{tabular}
 endsnippet
 
 snippet verb "Inline verbatim" w
