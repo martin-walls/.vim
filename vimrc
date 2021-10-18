@@ -8,7 +8,6 @@ set number
 
 set autoindent
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -32,36 +31,36 @@ colorscheme onedark
 
 " vim-plug
 set nocompatible
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 
 " bracket auto close
-Plug 'tmsvg/pear-tree'
+"Plug 'tmsvg/pear-tree'
 
 " lots of languages support
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 
 " lightline bottom bar
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 
 " git integration
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 " fuzzy file search
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " latex
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
-Plug 'sirver/ultisnips'
+"Plug 'sirver/ultisnips'
 let g:UltiSnipsExpandTrigger = '<f1>'
 let g:UltiSnipsJumpForwardTrigger = '<f1>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-f1>'
 let g:UltiSnipsEditSplit = 'context'
 
-call plug#end()
+"call plug#end()
 
 " use <tab> to both expand snippets and compete text depending on context
 let g:ulti_expand_or_jump_res = 0
