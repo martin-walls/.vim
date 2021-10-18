@@ -55,12 +55,39 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 Plug 'sirver/ultisnips'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsExpandTrigger = '<f1>'
+let g:UltiSnipsJumpForwardTrigger = '<f1>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-f1>'
 let g:UltiSnipsEditSplit = 'context'
 
 call plug#end()
+
+" use <tab> to both expand snippets and compete text depending on context
+let g:ulti_expand_or_jump_res = 0
+fun! TryUltiSnips()
+  if !pumvisible() " with the pop-up menu visible, let Tab move down
+    call UltiSnips#ExpandSnippetOrJump()
+  endif
+  return ''
+endf
+fun! TryMuComplete()
+  return g:ulti_expand_or_jump_res ? "" : "\<plug>(MUcompleteFwd)"
+endf
+inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
+imap <expr> <silent> <plug>(TryMU) TryMuComplete()
+imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
+" remap this so MUcompleteFwd not mapped to <tab>
+imap <> <plug>(MUcompleteFwd)
+
+let g:mucomplete#chains = {
+  \ 'default' : ['path', 'omni', 'keyn', 'dict'],
+  \ 'vim'     : ['path', 'cmd', 'keyn']
+  \ }
+" if no results from autocompletion, insert a literal tab
+let g:mucomplete#tab_when_no_results = 1
+
+"inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")
+"imap <cr> <plug>MyCR
 
 " pear tree
 " custom pairs to auto close
@@ -73,6 +100,8 @@ let g:pear_tree_pairs = {
   \ '/\*': {'closer': '\*/'},
   \ '<!--': {'closer': '-->'}
   \ }
+"let g:pear_tree_repeatable_expand = 0
+"imap <c-s-cr> <Plug>(PearTreeExpand)
 
 " filetype specific pairs
 augroup html_pairs
@@ -128,3 +157,18 @@ augroup vimtex_auto_compile_clean
   au User VimtexEventQuit VimtexClean
   au User VimtexEventInitPost VimtexCompile
 augroup END
+
+
+" mucomplete
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c
+let g:mucomplete#enable_auto_at_startup = 1
+
+
+map <silent> <F3> :call BufferList()<CR>
+
+" spellcheck
+set spelllang=en
+" enable spellcheck in tex files
+au FileType tex set spell
