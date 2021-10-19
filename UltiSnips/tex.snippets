@@ -49,9 +49,14 @@ snippet bit "Itemize environment" bA
 endsnippet
 
 context "env('enumerate')"
-snippet item "Item" b
+snippet item "Item" bW
 \item % ($1)
 $0
+endsnippet
+
+context "env('itemize')"
+snippet item "Item" bW
+\item $0
 endsnippet
 
 
@@ -80,6 +85,17 @@ $0
 \end{align*}
 endsnippet
 
+context "env('align') or env('align*')"
+snippet = "= in align" wA
+&=
+endsnippet
+
+snippet dm "Display math" bA
+\begin{align*}
+$0
+\end{align*}
+endsnippet
+
 snippet mk "Inline math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
@@ -99,7 +115,6 @@ $0
 \end{examquestion}
 endsnippet
 
-# frame environment
 snippet bfr "Frame environment" bA
 \begin{frame}
 \frametitle{$1}
@@ -149,6 +164,10 @@ endsnippet
 context "math()"
 snippet // "Fraction" iA
 \frac{$1}{$2}$0
+endsnippet
+
+# Greek chars 
+snippet @a "alpha" wA
 endsnippet
 
 context "math()"
@@ -209,5 +228,90 @@ snippet @{ "Curly brackets" iA
 \left { $1 \right }$0
 endsnippet
 
+##### Greek characters #####
+context "math()"
+snippet @a "alpha" iA
+\alpha
+endsnippet
+context "math()"
+snippet @b "beta" iA
+\beta
+endsnippet
+context "math()"
+snippet @d "delta" iA
+\delta
+endsnippet
+context "math()"
+snippet @e "epsilon" iA
+\epsilon
+endsnippet
+context "math()"
+snippet @ve "varepsilon" iA
+\varepsilon
+endsnippet
+context "math()"
+snippet @f "phi" iA
+\phi
+endsnippet
+context "math()"
+snippet @g "gamma" iA
+\gamma
+endsnippet
+context "math()"
+snippet @k "kappa" iA
+\kappa
+endsnippet
+context "math()"
+snippet @l "lambda" iA
+\lambda
+endsnippet
+context "math()"
+snippet @m "mu" iA
+\mu
+endsnippet
+context "math()"
+snippet @p "pi" iA
+\pi
+endsnippet
+context "math()"
+snippet @q "theta" iA
+\theta
+endsnippet
+context "math()"
+snippet @s "sigma" iA
+\sigma
+endsnippet
+context "math()"
+snippet @o "omega" iA
+\omega
+endsnippet
 
+context "math()"
+snippet @D "Delta" iA
+\Delta
+endsnippet
+context "math()"
+snippet @F "Phi" iA
+\Phi
+endsnippet
+context "math()"
+snippet @G "Gamma" iA
+\Gamma
+endsnippet
+context "math()"
+snippet @P "Pi" iA
+\Pi
+endsnippet
+context "math()"
+snippet @Q "Theta" iA
+\Theta
+endsnippet
+context "math()"
+snippet @S "Sigma" iA
+\Sigma
+endsnippet
+context "math()"
+snippet @O "Omega" iA
+\Omega
+endsnippet
 
