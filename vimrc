@@ -110,20 +110,23 @@ augroup html_pairs
   autocmd FileType html let b:pear_tree_pairs += {
     \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
     \ }
+  autocmd FileType html call extend(b:pear_tree_pairs, g:pear_tree_pairs)
 augroup END
 
 augroup js_pairs
   autocmd!
-  autocmd FileType js let b:pear_tree_pairs += {
+  autocmd FileType javascript let b:pear_tree_pairs += {
     \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
     \ }
+  autocmd FileType javascript call extend(b:pear_tree_pairs, g:pear_tree_pairs)
 augroup END
 
 augroup latex_pairs
   autocmd!
-  autocmd FileType tex let b:pear_tree_pairs += {
+  autocmd FileType tex let b:pear_tree_pairs = {
     \ '$': {'closer': '$'}
     \ }
+  autocmd FileType tex call extend(b:pear_tree_pairs, g:pear_tree_pairs)
 augroup END
 
 " smart pairs
