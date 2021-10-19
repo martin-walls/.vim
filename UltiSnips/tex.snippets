@@ -86,7 +86,7 @@ $0
 endsnippet
 
 context "env('align') or env('align*')"
-snippet = "= in align" wA
+snippet == "= in align" wA
 &=
 endsnippet
 
@@ -98,7 +98,7 @@ endsnippet
 
 snippet mk "Inline math" wA
 $${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', ':', ';']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -132,7 +132,7 @@ snippet bfrit "Itemized frame environment" bA
 endsnippet
 
 snippet bfi "Figure" bA
-\begin{figure}
+\begin{figure}[ht]
 	\centering
 	$0
 	\caption{$2}
@@ -212,6 +212,20 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv = match.group(1)`}
+endsnippet
+
+context "math()"
+snippet dd "derivative" wA
+\frac{\mathrm{d} $1}{\mathrm{d} $2}$0
+endsnippet
+
+snippet ... "ldots" wA
+\ldots
+endsnippet
+
+context "math()"
+snippet sumi "sum" wA
+\sum_{$1=$2}^{$3}$0
 endsnippet
 
 # brackets with left/right
@@ -313,5 +327,35 @@ endsnippet
 context "math()"
 snippet @O "Omega" iA
 \Omega
+endsnippet
+
+snippet supoworktemplate "Supo work default template" wA
+\documentclass[10pt,twoside,a4paper]{article}
+
+% Name and email
+\newcommand{\studentname}{Martin Walls}
+\newcommand{\studentemail}{mrw64@cam.ac.uk}
+\newcommand{\svvenue}{${1:supo venue}}
+\newcommand{\svrname}{${2:supervisor name}}
+
+% Details of supervision
+\newcommand{\svcourse}{CST Part IB: ${3:course name}}
+\newcommand{\svnumber}{${4:supo number}}
+\newcommand{\svdate}{${5:supo date}}
+\newcommand{\svtime}{${6:supo time}}
+
+% Pull in the supo work template
+% uncomment this line for compiling on windows
+% \input{\string C:/Users/walls/UNI/supo-work-template/template/template.tex}
+% uncomment this line for compiling on windows/wsl
+\input{\string ~/UNI/supo-work-template/template/template.tex}
+
+% Additional \usepackage commands etc here
+
+\begin{document}
+
+$0
+
+\end{document}
 endsnippet
 
