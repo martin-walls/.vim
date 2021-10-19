@@ -107,21 +107,21 @@ let g:pear_tree_pairs = {
 " filetype specific pairs
 augroup html_pairs
   autocmd!
-  autocmd FileType html let b:pear_tree_pairs = {
+  autocmd FileType html let b:pear_tree_pairs += {
     \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
     \ }
 augroup END
 
 augroup js_pairs
   autocmd!
-  autocmd FileType js let b:pear_tree_pairs = {
+  autocmd FileType js let b:pear_tree_pairs += {
     \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
     \ }
 augroup END
 
 augroup latex_pairs
   autocmd!
-  autocmd FileType tex let b:pear_tree_pairs = {
+  autocmd FileType tex let b:pear_tree_pairs += {
     \ '$': {'closer': '$'}
     \ }
 augroup END
@@ -130,6 +130,7 @@ augroup END
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
+let g:pear_tree_repeatable_expand = 0
 
 " make lightline show
 set laststatus=2
@@ -173,6 +174,9 @@ map <silent> <F3> :call BufferList()<CR>
 set spelllang=en
 " enable spellcheck in tex files
 au FileType tex setlocal spell
+"au FileType tex setlocal noautoindent 
+"au FileType tex setlocal nocindent 
+"au FileType tex setlocal indentexpr=
 
 " snippets file syntax highlighting
 au BufNewFile,BufRead *.snippets set ft=snippets
