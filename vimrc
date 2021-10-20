@@ -1,15 +1,19 @@
 " use 2 spaces for tab
 set tabstop=2
 set shiftwidth=2
+" turn tabs into spaces
 set expandtab
-
 " show line numbers
 set number
-
 set autoindent
+set nocompatible
+
+" don't wrap in middle of word
+set linebreak
 
 let g:netrw_dirhistmax=0
 
+" ########## color scheme ##########
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -30,67 +34,46 @@ syntax on
 let g:onedark_hide_endofbuffer=1
 colorscheme onedark
 
-" vim-plug
-set nocompatible
-"call plug#begin('~/.vim/plugged')
-
-" bracket auto close
-"Plug 'tmsvg/pear-tree'
-
-" lots of languages support
-"Plug 'sheerun/vim-polyglot'
-
-" lightline bottom bar
-"Plug 'itchyny/lightline.vim'
-
-" git integration
-"Plug 'tpope/vim-fugitive'
-
-" fuzzy file search
-"Plug 'ctrlpvim/ctrlp.vim'
-
-" latex
-"Plug 'lervag/vimtex'
+" ##### vimtex #####
 let g:tex_flavor='latex'
 set conceallevel=1
-let g:tex_conceal='abdmg'
+let g:tex_conceal='abdg'
+" disable unreadable conceals
+let g:vimtex_syntax_conceal = {
+  \ 'math_fracs': 0,
+  \ 'math_super_sub': 0
+  \ }
 
-"Plug 'sirver/ultisnips'
-let g:UltiSnipsExpandTrigger = '<f1>'
-let g:UltiSnipsJumpForwardTrigger = '<f1>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-f1>'
+" auto compile and clean
+augroup vimtex_auto_compile_clean
+  au!
+  au User VimtexEventQuit VimtexClean
+  au User VimtexEventInitPost VimtexCompile
+augroup END
+
+
+" ##### UltiSnips #####
+let g:UltiSnipsExpandTrigger = '<f2>'
+let g:UltiSnipsJumpForwardTrigger = '<f2>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-f2>'
 let g:UltiSnipsEditSplit = 'context'
 
-"call plug#end()
 
-" use <tab> to both expand snippets and compete text depending on context
-let g:ulti_expand_or_jump_res = 0
-fun! TryUltiSnips()
-  if !pumvisible() " with the pop-up menu visible, let Tab move down
-    call UltiSnips#ExpandSnippetOrJump()
-  endif
-  return ''
-endf
-fun! TryMuComplete()
-  return g:ulti_expand_or_jump_res ? "" : "\<plug>(MUcompleteFwd)"
-endf
-inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
-imap <expr> <silent> <plug>(TryMU) TryMuComplete()
-imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
-" remap this so MUcompleteFwd not mapped to <tab>
-imap <> <plug>(MUcompleteFwd)
-
+" ##### MUComplete #####
 let g:mucomplete#chains = {
   \ 'default' : ['path', 'omni', 'keyn', 'dict'],
-  \ 'vim'     : ['path', 'cmd', 'keyn']
+  \ 'vim'     : ['path', 'cmd', 'keyn'],
+  \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
   \ }
 " if no results from autocompletion, insert a literal tab
 let g:mucomplete#tab_when_no_results = 1
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c
+let g:mucomplete#enable_auto_at_startup = 1
 
-"inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")
-"imap <cr> <plug>MyCR
 
-" pear tree
+" ##### Pear Tree #####
 " custom pairs to auto close
 let g:pear_tree_pairs = {
   \ '(': {'closer': ')'}, 
@@ -102,32 +85,6 @@ let g:pear_tree_pairs = {
   \ '<!--': {'closer': '-->'}
   \ }
 "let g:pear_tree_repeatable_expand = 0
-"imap <c-s-cr> <Plug>(PearTreeExpand)
-
-" filetype specific pairs
-augroup html_pairs
-  autocmd!
-  autocmd FileType html let b:pear_tree_pairs += {
-    \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
-    \ }
-  autocmd FileType html call extend(b:pear_tree_pairs, g:pear_tree_pairs)
-augroup END
-
-augroup js_pairs
-  autocmd!
-  autocmd FileType javascript let b:pear_tree_pairs += {
-    \ '<*>': {'closer': '</*>', 'not_if': ['br', 'meta']}
-    \ }
-  autocmd FileType javascript call extend(b:pear_tree_pairs, g:pear_tree_pairs)
-augroup END
-
-augroup latex_pairs
-  autocmd!
-  autocmd FileType tex let b:pear_tree_pairs = {
-    \ '$': {'closer': '$'}
-    \ }
-  autocmd FileType tex call extend(b:pear_tree_pairs, g:pear_tree_pairs)
-augroup END
 
 " smart pairs
 let g:pear_tree_smart_openers = 1
@@ -135,6 +92,8 @@ let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 let g:pear_tree_repeatable_expand = 0
 
+
+" ##### lightline #####
 " make lightline show
 set laststatus=2
 " disable default -- INSERT -- etc
@@ -152,31 +111,12 @@ let g:lightline = {
   \ }
 
 
-" save and load code folds automatically
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
-
-augroup vimtex_auto_compile_clean
-  au!
-  au User VimtexEventQuit VimtexClean
-  au User VimtexEventInitPost VimtexCompile
-augroup END
-
-
-" mucomplete
-set completeopt+=menuone
-set completeopt+=noselect
-set shortmess+=c
-let g:mucomplete#enable_auto_at_startup = 1
-
-
+" ##### bufferlist #####
 map <silent> <F3> :call BufferList()<CR>
 
-" spellcheck
+
+" ##### spellcheck #####
 set spelllang=en
-" enable spellcheck in tex files
-au FileType tex setlocal spell
 "au FileType tex setlocal noautoindent 
 "au FileType tex setlocal nocindent 
 "au FileType tex setlocal indentexpr=
@@ -184,3 +124,8 @@ au FileType tex setlocal spell
 " snippets file syntax highlighting
 au BufNewFile,BufRead *.snippets set ft=snippets
 au FileType snippets setlocal syntax=snippets
+
+
+" ##### Goyo.vim #####
+let g:goyo_width = '120'
+let g:goyo_height = '100%'
