@@ -25,3 +25,6 @@
 [submodule "pack/mrw/start/vim-mucomplete"]
 	path = pack/mrw/start/vim-mucomplete
 	url = https://github.com/lifepillar/vim-mucomplete.git
+[submodule "pack/mrw/start/goyo.vim"]
+	path = pack/mrw/start/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
