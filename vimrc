@@ -11,10 +11,18 @@ set nocompatible
 " don't wrap in middle of word
 set linebreak
 " move up/down one line as it appears on screen
+noremap <Up> gk
+noremap <Down> gj
 inoremap <Up> <c-o>gk
 inoremap <Down> <c-o>gj
-nnoremap <Up> gk
-nnoremap <Down> gj
+" same for home/end
+set <Home>=OH
+set <End>=OF
+noremap <Home> g^
+noremap <End> g$
+inoremap <Home> <c-o>g^
+inoremap <End> <c-o>g$
+
 
 let g:netrw_dirhistmax=0
 
