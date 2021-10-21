@@ -28,3 +28,6 @@
 [submodule "pack/mrw/start/goyo.vim"]
 	path = pack/mrw/start/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
+[submodule "pack/mrw/start/vim-commentary"]
+	path = pack/mrw/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
