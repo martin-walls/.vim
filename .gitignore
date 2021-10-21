@@ -3,3 +3,4 @@ plugged/
 .netrwhist
 view/
 pack/bundle/start/vim-mucomplete
+*.swp
