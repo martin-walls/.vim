@@ -29,6 +29,14 @@ inoremap <End> <c-o>g$
 
 let g:netrw_dirhistmax=0
 
+" ##### explorer #####
+" hide top banner
+let g:netrw_banner = 0
+" open files in new vertical split
+let g:netrw_browse_split = 2
+" set % width
+let g:netrw_winsize = 25
+
 " ########## color scheme ##########
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -121,12 +129,53 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \             [ 'readonly', 'filename', 'modified' ] ],
+  \   'right': [ [], [ 'percent', 'lineinfo' ], [ 'filetype' ] ]
   \ },
   \ 'component_function': {
-  \   'gitbranch': 'FugitiveHead'
+  \   'gitbranch': 'FugitiveHead',
+  \   'lineinfo': 'LightlineLineInfo',
+  \   'percent': 'LightlinePercent',
+  \   'filetype': 'LightlineFiletype',
+  \   'mode': 'LightlineMode'
   \ },
   \ }
+
+function! LightlineLineInfo() abort
+  if winwidth(0) < 75
+    return ''
+  endif
+
+  let l:current_line = printf('%-3s', line('.'))
+  let l:max_line = printf('%-3s', line('$'))
+  let l:lineinfo = l:current_line . '/' . l:max_line
+  return l:lineinfo
+endfunction
+
+function! LightlinePercent() abort
+  if winwidth(0) < 55
+    return ''
+  endif
+
+  let l:percent = line('.') * 100 / line('$') . '%'
+  return printf('%-4s', l:percent)
+endfunction
+
+function! LightlineFiletype() abort
+  if winwidth(0) < 55
+    return ''
+  endif
+
+  return &filetype
+endfunction
+
+function! LightlineMode() abort
+  let ftmap = {
+        \ 'netrw': 'EXPLORER'
+        \ }
+  return get(ftmap, &filetype, lightline#mode())
+endfunction
+
 
 
 " ##### bufferlist #####
