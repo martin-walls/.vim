@@ -8,6 +8,9 @@ set number
 set autoindent
 set nocompatible
 
+set splitright
+set splitbelow
+
 " don't wrap in middle of word
 set linebreak
 " move up/down one line as it appears on screen
@@ -146,7 +149,12 @@ let g:goyo_width = '120'
 let g:goyo_height = '100%'
 autocmd! User GoyoEnter nested call lightline#enable()
 
+" ##### vim-commentary #####
+nmap <c-_> gcc
+imap <c-_> <c-o>gcc
+vmap <c-_> gc
 
+" add brackets around visual selection
 vnoremap { xi{}<Esc>P
 vnoremap ( xi()<Esc>P
 vnoremap [ xi[]<Esc>P
