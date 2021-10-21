@@ -9,4 +9,4 @@ call extend(b:pear_tree_pairs, g:pear_tree_pairs)
 setlocal spell
 
 " autosave on write
-au TextChanged,InsertLeave <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+au TextChanged,TextChangedI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
