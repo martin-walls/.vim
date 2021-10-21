@@ -10,6 +10,11 @@ set nocompatible
 
 " don't wrap in middle of word
 set linebreak
+" move up/down one line as it appears on screen
+inoremap <Up> <c-o>gk
+inoremap <Down> <c-o>gj
+nnoremap <Up> gk
+nnoremap <Down> gj
 
 let g:netrw_dirhistmax=0
 
@@ -53,9 +58,9 @@ augroup END
 
 
 " ##### UltiSnips #####
-let g:UltiSnipsExpandTrigger = '<f2>'
-let g:UltiSnipsJumpForwardTrigger = '<f2>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-f2>'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsEditSplit = 'context'
 
 
@@ -71,6 +76,8 @@ set completeopt+=menuone
 set completeopt+=noselect
 set shortmess+=c
 let g:mucomplete#enable_auto_at_startup = 1
+imap <f2> <plug>(MUcompleteFwd)
+imap <s-f2> <plug>(MUcompleteBwd)
 
 
 " ##### Pear Tree #####
