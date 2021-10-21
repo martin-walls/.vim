@@ -129,7 +129,7 @@ au FileType snippets setlocal syntax=snippets
 " ##### Goyo.vim #####
 let g:goyo_width = '120'
 let g:goyo_height = '100%'
-let t:goyo_disabled_airline = 0
+autocmd! User GoyoEnter nested call lightline#enable()
 
 
 vnoremap { xi{}<Esc>P
