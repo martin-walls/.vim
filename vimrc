@@ -26,6 +26,18 @@ noremap <End> g$
 inoremap <Home> <c-o>g^
 inoremap <End> <c-o>g$
 
+" move lines up/down (and reindent to match new pos)
+set <A-j>=j
+set <A-k>=k
+nnoremap <A-j> :m.+1<CR>==
+nnoremap <A-k> :m.-2<CR>==
+inoremap <A-j> <Esc>:m.+1<CR>==gi
+inoremap <A-k> <Esc>:m.-2<CR>==gi
+vnoremap <A-j> :m'>+1<CR>gv=gv
+vnoremap <A-k> :m'<-2<CR>gv=gv
+" also allow using arrow keys
+map <A-Down> <A-j>
+map <A-Up> <A-k>
 
 let g:netrw_dirhistmax=0
 
