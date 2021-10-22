@@ -26,6 +26,9 @@ noremap <End> g$
 inoremap <Home> <c-o>g^
 inoremap <End> <c-o>g$
 
+" go into normal mode in terminal
+tnoremap <Esc><Esc> <c-\><c-n>
+
 " move lines up/down (and reindent to match new pos)
 set <A-j>=j
 set <A-k>=k
