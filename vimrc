@@ -27,7 +27,10 @@ inoremap <Home> <c-o>g^
 inoremap <End> <c-o>g$
 
 " go into normal mode in terminal
-tnoremap <Esc><Esc> <c-\><c-n>
+if exists(':tnoremap')
+  tnoremap <Esc><Esc> <c-\><c-n>
+endif
+
 
 " move lines up/down (and reindent to match new pos)
 set <A-j>=j
