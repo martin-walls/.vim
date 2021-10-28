@@ -61,6 +61,11 @@ autocmd BufWinEnter *.* silent loadview
 
 set foldmethod=syntax
 
+" add undo action per word
+inoremap <Space> <Space><C-g>u
+inoremap <c-w> <c-g>u<c-w>
+inoremap <c-u> <c-g>u<c-u>
+
 " ########## color scheme ##########
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -214,8 +219,8 @@ set spelllang=en
 "au FileType tex setlocal indentexpr=
 
 " snippets file syntax highlighting
-au BufNewFile,BufRead *.snippets set ft=snippets
-au FileType snippets setlocal syntax=snippets
+" au BufNewFile,BufRead *.snippets set ft=snippets
+" au FileType snippets setlocal syntax=snippets
 
 
 " ##### Goyo.vim #####
