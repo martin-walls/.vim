@@ -38,8 +38,10 @@ snippet bit "Itemize environment" bA
 endsnippet
 
 snippet examq "Exam question environment" bA
+% $1 Paper $2 Question $3
 \begin{examquestion}{$1}{$2}{$3}
 \begin{enumerate}
+\item % (a)
 $0
 \end{enumerate}
 \end{examquestion}
@@ -416,6 +418,16 @@ endsnippet
 
 snippet ie. "ie" wA
 i.e.\\$0
+endsnippet
+
+
+########## BOLD/ITALIC ETC ##########
+snippet fbf "bold text" w
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet fit "italic text" w
+\textit{${1:${VISUAL}}}$0
 endsnippet
 
 
