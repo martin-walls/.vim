@@ -56,8 +56,8 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
 " save code folds between sessions
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 
 set foldmethod=syntax
 
@@ -117,8 +117,9 @@ let g:UltiSnipsEditSplit = 'context'
 let g:mucomplete#chains = {
   \ 'default' : ['path', 'omni', 'keyn', 'dict'],
   \ 'vim'     : ['path', 'cmd', 'keyn'],
-  \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
+  \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict']
   \ }
+" \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 " if no results from autocompletion, insert a literal tab
 let g:mucomplete#tab_when_no_results = 1
 set completeopt+=menuone
@@ -237,3 +238,9 @@ vmap <c-_> gc
 vnoremap { xi{}<Esc>P
 vnoremap ( xi()<Esc>P
 vnoremap [ xi[]<Esc>P
+
+" supo work template
+augroup supo_work_template
+  au!
+  au BufNewFile mrw64*.tex 0r ~/.vim/templates/supotemplate.tex
+augroup END
