@@ -102,7 +102,7 @@ let g:vimtex_syntax_conceal = {
 augroup vimtex_auto_compile_clean
   au!
   au User VimtexEventQuit VimtexClean
-  au User VimtexEventInitPost VimtexCompile
+  " au User VimtexEventInitPost VimtexCompile
 augroup END
 
 
