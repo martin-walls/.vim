@@ -31,6 +31,59 @@ $0
 \end{enumerate}
 endsnippet
 
+snippet "(\d+)ben" "enumerate" brA
+\begin{enumerate}
+\item % (1)
+$0
+`!p 
+snip.rv = ''
+numitems = max(int(match.group(1)), 1) - 1
+for i in range(numitems):
+	snip.rv += '\\item % ({})\n'.format(i+2)
+`
+\end{enumerate}
+endsnippet
+
+# snippet "(\d+)aben" "enumerate" brA
+# \begin{enumerate}
+# \item % (a)
+# $0
+# `!p
+# snip.rv = ''
+# numitems = max(int(match.group(1)), 1) - 1
+# for i in range(numitems):
+# 	snip.rv += '\\item % ({})\n'.format(chr(ord('a') + i+1))
+# `
+# \end{enumerate}
+# endsnippet
+
+snippet "([a-z])ben" "enumerate" brA
+\begin{enumerate}
+\item % (a)
+$0
+`!p
+snip.rv = ''
+numitems = ord(match.group(1)) - ord('a')
+for i in range(numitems):
+	snip.rv += '\\item % ({})\n'.format(chr(ord('b') + i))
+`
+\end{enumerate}
+endsnippet
+
+snippet "(\d+)iben" "enumerate" brA
+\begin{enumerate}
+\item % (i)
+$0
+`!p
+roman = ["ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv"]
+snip.rv = ""
+numitems = max(int(match.group(1)), 1) - 1
+for i in range(numitems):
+	snip.rv += "\\item % ({})\n".format(roman[i])
+`
+\end{enumerate}
+endsnippet
+
 snippet bit "Itemize environment" bA
 \begin{itemize}
 \item $0
@@ -84,7 +137,7 @@ $0
 \end{tabular}
 endsnippet
 
-snippet "btbl(\d)x(\d)" "tabular mxn" wrA
+snippet "btbl(\d+)x(\d+)" "tabular mxn" wrA
 \begin{tabular}{`!p snip.rv = 'c'*int(match.group(1))`}
 $0`!p 
 row = ' & ' * (int(match.group(1)) - 1) + ' \\\\'
