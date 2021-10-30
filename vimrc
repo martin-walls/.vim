@@ -59,7 +59,7 @@ let g:netrw_winsize = 25
 " autocmd BufWinLeave *.* mkview
 " autocmd BufWinEnter *.* silent loadview
 
-set foldmethod=syntax
+
 
 " add undo action per word
 inoremap <Space> <Space><C-g>u
@@ -122,13 +122,18 @@ let g:mucomplete#chains = {
 " \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 " if no results from autocompletion, insert a literal tab
 let g:mucomplete#tab_when_no_results = 1
-set completeopt+=menuone
-set completeopt+=noselect
+set completeopt+=menuone,noselect
 set shortmess+=c
+set noinfercase
 let g:mucomplete#enable_auto_at_startup = 1
 imap <f2> <plug>(MUcompleteFwd)
 imap <s-f2> <plug>(MUcompleteBwd)
+" when popup menu visible, enter selects highlighted item
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" ### clang complete ###
+let g:clang_library_path = '/usr/lib/llvm-10/lib'
+let g:clang_complete_auto = 1
 
 " ##### Pear Tree #####
 " custom pairs to auto close
