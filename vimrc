@@ -37,6 +37,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
+" open terminal in vertical split
+command Vter vert ter
+
 " move lines up/down (and reindent to match new pos)
 set <A-j>=j
 set <A-k>=k
