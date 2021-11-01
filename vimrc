@@ -31,7 +31,11 @@ if exists(':tnoremap')
   tnoremap <Esc><Esc> <c-\><c-n>
 endif
 
-
+" navigate between windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
 
 " move lines up/down (and reindent to match new pos)
 set <A-j>=j
