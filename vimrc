@@ -32,6 +32,7 @@ if exists(':tnoremap')
 endif
 
 
+
 " move lines up/down (and reindent to match new pos)
 set <A-j>=j
 set <A-k>=k
@@ -167,6 +168,9 @@ let g:lightline = {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified' ] ],
   \   'right': [ [], [ 'percent', 'lineinfo' ], [ 'filetype' ] ]
+  \ },
+  \ 'inactive': {
+  \   'left': [[ 'filename', 'modified' ]] 
   \ },
   \ 'component_function': {
   \   'gitbranch': 'FugitiveHead',
