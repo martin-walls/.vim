@@ -64,9 +64,9 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
 " save code folds between sessions
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
-
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+set foldmethod=manual
 
 
 " add undo action per word
@@ -104,6 +104,9 @@ let g:tex_conceal='abdg'
 let g:vimtex_syntax_conceal = {
   \ 'math_fracs': 0,
   \ 'math_super_sub': 0
+  \ }
+let g:vimtex_compiler_latexmk_engines = {
+  \ '_' : '-xelatex'
   \ }
 
 " auto compile and clean
