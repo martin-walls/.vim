@@ -53,6 +53,11 @@ vnoremap <A-k> :m'<-2<CR>gv=gv
 map <A-Down> <A-j>
 map <A-Up> <A-k>
 
+" mouse support
+set mouse=a
+set ttymouse=sgr
+set ttyfast
+
 let g:netrw_dirhistmax=0
 
 " ##### explorer #####
@@ -111,9 +116,9 @@ let g:vimtex_compiler_latexmk_engines = {
 
 " tex folding
 " let g:vimtex_fold_enabled=1
-set foldmethod=expr
-set foldexpr=vimtex#fold#level(v:lnum)
-set foldtext=vimtex#fold#text()
+" set foldmethod=expr
+" set foldexpr=vimtex#fold#level(v:lnum)
+" set foldtext=vimtex#fold#text()
 set fillchars=fold:\ 
 let g:vimtex_fold_manual=1
 let g:vimtex_fold_types = {
@@ -122,6 +127,7 @@ let g:vimtex_fold_types = {
   \   'whitelist': ['examquestion'],
   \ },
   \ }
+let g:fastfold_minlines=0
 
 " auto compile and clean
 augroup vimtex_auto_compile_clean
