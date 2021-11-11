@@ -14,3 +14,7 @@ augroup autosave_on_write
   au TextChanged,TextChangedI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 augroup END
 
+" vimtex folding
+set foldmethod=expr
+set foldexpr=vimtex#fold#level(v:lnum)
+set foldtext=vimtex#fold#text()
