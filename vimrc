@@ -109,6 +109,20 @@ let g:vimtex_compiler_latexmk_engines = {
   \ '_' : '-xelatex'
   \ }
 
+" tex folding
+" let g:vimtex_fold_enabled=1
+set foldmethod=expr
+set foldexpr=vimtex#fold#level(v:lnum)
+set foldtext=vimtex#fold#text()
+set fillchars=fold:\ 
+let g:vimtex_fold_manual=1
+let g:vimtex_fold_types = {
+  \ 'envs': {
+  \   'blacklist': ['enumerate', 'itemize'],
+  \   'whitelist': ['examquestion'],
+  \ },
+  \ }
+
 " auto compile and clean
 augroup vimtex_auto_compile_clean
   au!
