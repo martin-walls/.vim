@@ -31,6 +31,3 @@
 [submodule "pack/mrw/start/clang_complete"]
 	path = pack/mrw/start/clang_complete
 	url = https://github.com/xavierd/clang_complete.git
-[submodule "pack/mrw/start/FastFold"]
-	path = pack/mrw/start/FastFold
-	url = https://github.com/Konfekt/FastFold
