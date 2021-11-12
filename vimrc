@@ -69,9 +69,11 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
 " save code folds between sessions
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 set foldmethod=manual
+" show folds left of line numbers; can be opened/closed w/ mouse
+set foldcolumn=3
 
 
 " add undo action per word
@@ -120,10 +122,10 @@ let g:vimtex_compiler_latexmk_engines = {
 " set foldexpr=vimtex#fold#level(v:lnum)
 " set foldtext=vimtex#fold#text()
 set fillchars=fold:\ 
-let g:vimtex_fold_manual=1
+" let g:vimtex_fold_manual=1
 let g:vimtex_fold_types = {
   \ 'envs': {
-  \   'blacklist': ['enumerate', 'itemize'],
+  \   'blacklist': ['enumerate', 'itemize', 'lstlisting'],
   \   'whitelist': ['examquestion'],
   \ },
   \ }
@@ -282,4 +284,5 @@ vnoremap [ xi[]<Esc>P
 augroup supo_work_template
   au!
   au BufNewFile mrw64*.tex 0r ~/.vim/templates/supotemplate.tex
+  au BufNewFile preamble.tex 0r ~/.vim/templates/supopreamble.tex
 augroup END
