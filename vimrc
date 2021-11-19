@@ -11,6 +11,9 @@ set nocompatible
 set splitright
 set splitbelow
 
+set list
+set listchars=tab:»-,trail:·
+
 " don't wrap in middle of word
 set linebreak
 " move up/down one line as it appears on screen
@@ -73,8 +76,12 @@ let g:netrw_winsize = 25
 " autocmd BufWinEnter *.* silent loadview
 set foldmethod=manual
 " show folds left of line numbers; can be opened/closed w/ mouse
-set foldcolumn=3
+set foldcolumn=2
+" foldcol chars
+set fillchars+=foldopen:┍,foldsep:│
 
+" vertical window separator
+set fillchars+=vert:┃
 
 " add undo action per word
 inoremap <Space> <Space><C-g>u
@@ -121,7 +128,7 @@ let g:vimtex_compiler_latexmk_engines = {
 " set foldmethod=expr
 " set foldexpr=vimtex#fold#level(v:lnum)
 " set foldtext=vimtex#fold#text()
-set fillchars=fold:\ 
+set fillchars+=fold:\ 
 " let g:vimtex_fold_manual=1
 let g:vimtex_fold_types = {
   \ 'envs': {
