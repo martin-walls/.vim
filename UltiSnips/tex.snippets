@@ -23,6 +23,11 @@ snippet beg "Begin/end environment" bA
 $0
 \end{$1}
 endsnippet
+snippet \begin "Begin/end environment" A
+\begin{$1}
+$0
+\end{$1}
+endsnippet
 
 snippet "(t?)ben" "Enumerate environment" brA
 \begin{enumerate}
@@ -302,10 +307,10 @@ snippet floor "floor" wA
 \left \lfloor $1 \right\rfloor $0
 endsnippet
 
-context "math()"
-snippet "(?<!\\)(max|sin|cos)" "functions" rwA
-\\`!p snip.rv = match.group(1)`
-endsnippet
+# context "math()"
+# snippet "(?<!\\)(max|sin|cos)" "functions" rwA
+# \\`!p snip.rv = match.group(1)`
+# endsnippet
 
 context "math()"
 snippet sumi "sum" wA
@@ -451,6 +456,36 @@ snippet @{ "Curly brackets" iA
 \left { $1 \right }$0
 endsnippet
 
+context "math()"
+snippet "^.*\)lr" "turn brackets into left( right)" wrA
+`!p
+line = match.string[:-2]
+depth = 0
+i = len(line) - 1
+while True:
+	if line[i] == ")": depth += 1
+	elif line[i] == "(": depth -= 1
+	if depth == 0: break
+	i -= 1
+snip.rv = line[0:i] + "\\left(" + line[i+1:-1] + "\\right)"
+`$0
+endsnippet
+
+context "math()"
+snippet "^.*\]lr" "turn brackets into left[ right]" wrA
+`!p
+line = match.string[:-2]
+depth = 0
+i = len(line) - 1
+while True:
+	if line[i] == "]": depth += 1
+	elif line[i] == "[": depth -= 1
+	if depth == 0: break
+	i -= 1
+snip.rv = line[0:i] + "\\left[" + line[i+1:-1] + "\\right]"
+`$0
+endsnippet
+
 
 ########## OTHER ##########
 snippet ... "ldots" wA
@@ -469,11 +504,6 @@ endsnippet
 context "math()"
 snippet txt "text in math mode" wA
 \text{$1}$0
-endsnippet
-
-context "math()"
-snippet gvn "given" wA
-\,|\,
 endsnippet
 
 ########## LETTER MODIFIERS ##########
