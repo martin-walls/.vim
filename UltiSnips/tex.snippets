@@ -31,14 +31,14 @@ endsnippet
 
 snippet "(t?)ben" "Enumerate environment" brA
 \begin{enumerate}
-\item % (${1:1}) `!p snip.rv = "TODO" if match.group(1) else ""`
+\item % (${1:1})`!p snip.rv = " TODO" if match.group(1) else ""`
 $0
 \end{enumerate}
 endsnippet
 
 snippet "(\d+)(t?)ben" "enumerate" brA
 \begin{enumerate}
-\item % (1) `!p snip.rv = "TODO" if match.group(2) else ""`
+\item % (1)`!p snip.rv = " TODO" if match.group(2) else ""`
 $0
 `!p 
 snip.rv = ''
@@ -68,7 +68,7 @@ endsnippet
 
 snippet "([a-z])(t?)ben" "enumerate" brA
 \begin{enumerate}
-\item % (a) `!p snip.rv = "TODO" if match.group(2) else ""`
+\item % (a)`!p snip.rv = " TODO" if match.group(2) else ""`
 $0
 `!p
 snip.rv = ''
@@ -85,7 +85,7 @@ endsnippet
 
 snippet "(\d+)i(t?)ben" "enumerate" brA
 \begin{enumerate}
-\item % (i) `!p snip.rv = "TODO" if match.group(2) else ""`
+\item % (i)`!p snip.rv = " TODO" if match.group(2) else ""`
 $0
 `!p
 roman = ["ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv"]
@@ -362,13 +362,27 @@ snippet ~~ "sim" iA
 endsnippet
 
 context "math()"
+priority 10
 snippet -> "right arrow" iA
 \rightarrow
 endsnippet
 
 context "math()"
+priority 10
 snippet <- "left arrow" iA
 \leftarrow
+endsnippet
+
+context "math()"
+priority 100
+snippet --> "long right arrow" iA
+\longrightarrow
+endsnippet
+
+context "math()"
+priority 100
+snippet <-- "long left arrow" iA
+\longleftarrow
 endsnippet
 
 
@@ -576,6 +590,10 @@ snippet \tt "monospace text" wA
 \texttt{${1:${VISUAL}}}$0
 endsnippet
 
+context "math()"
+snippet \bb "mathbb" wA
+\mathbb{${1:${VISUAL}}}$0
+endsnippet
 
 ########## GREEK CHARACTERS ##########
 context "math()"
