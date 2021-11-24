@@ -293,3 +293,12 @@ augroup supo_work_template
   au BufNewFile mrw64*.tex 0r ~/.vim/templates/supotemplate.tex
   au BufNewFile preamble.tex 0r ~/.vim/templates/supopreamble.tex
 augroup END
+
+" WSL clipboard support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+  augroup WslYank
+    au!
+    au TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+  augroup END
+endif
