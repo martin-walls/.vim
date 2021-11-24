@@ -35,3 +35,6 @@ Struct
 struct
 roundtrip
 ok
+enum
+externality
+datatypes
