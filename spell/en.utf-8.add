@@ -38,3 +38,6 @@ ok
 enum
 externality
 datatypes
+supertype
+Subtyping
+typeable
