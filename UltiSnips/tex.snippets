@@ -1,18 +1,17 @@
 ##### GLOBAL PYTHON #####
 global !p
 def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 
 def comment():
-	return vim.eval('vimtex#syntax#in_comment()') == '1'
+  return vim.eval('vimtex#syntax#in_comment()') == '1'
 
 def env(name):
-	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
-	return x != '0' and y != '0'
+  [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+  return x != '0' and y != '0'
 
 def list():
-	return env("enumerate") or env("itemize")
-
+  return env("enumerate") or env("itemize")
 endglobal
 
 
@@ -322,6 +321,17 @@ snippet +- "plusminus" iA
 \pm
 endsnippet
 
+context "math()"
+snippet ^, "prime" iA
+^\prime
+endsnippet
+
+context "math()"
+snippet |- "vdash" iA
+\vdash
+endsnippet
+
+
 ########## EQUALITY ##########
 # align equals
 context "env('align') or env('align*')"
@@ -352,8 +362,15 @@ endsnippet
 
 ########## ARROWS ##########
 context "math()"
-snippet => "implies" iA
-\implies
+priority 10
+snippet => "Rightarrow" iA
+\Rightarrow
+endsnippet
+
+context "math()"
+priority 100
+snippet ==> "Longrightarrow" iA
+\Longrightarrow
 endsnippet
 
 context "math()"
@@ -456,18 +473,23 @@ endsnippet
 
 # brackets with left/right
 context "math()"
-snippet @( "Round brackets" iA
+snippet @( "Round brackets" i
 \left ( $1 \right )$0
 endsnippet
 
 context "math()"
-snippet @[ "Square brackets" iA
+snippet @[ "Square brackets" i
 \left [ $1 \right ]$0
 endsnippet
 
 context "math()"
-snippet @{ "Curly brackets" iA
+snippet @{ "Curly brackets" i
 \left { $1 \right }$0
+endsnippet
+
+context "math()"
+snippet @< "Angle brackets" i
+\langle $1 \rangle$0
 endsnippet
 
 context "math()"
@@ -577,17 +599,26 @@ endsnippet
 snippet fbf "bold text" w
 \textbf{${1:${VISUAL}}}$0
 endsnippet
+snippet \bf "bold text" wA
+\textbf{${1:${VISUAL}}}$0
+endsnippet
 
 snippet fit "italic text" w
+\textit{${1:${VISUAL}}}$0
+endsnippet
+snippet \it "italic text" w
 \textit{${1:${VISUAL}}}$0
 endsnippet
 
 snippet ftt "monospace text" w
 \texttt{${1:${VISUAL}}}$0
 endsnippet
-
 snippet \tt "monospace text" wA
 \texttt{${1:${VISUAL}}}$0
+endsnippet
+
+snippet \sf "sans serif text" wA
+\textsf{${1:${VISUAL}}}$0
 endsnippet
 
 context "math()"
