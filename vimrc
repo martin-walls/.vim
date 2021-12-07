@@ -305,7 +305,7 @@ endif
 
 " ##### startify #####
 let g:startify_bookmarks = [
-  \ {'v': '~/.vimrc'},
-  \ {'t': '~/UNI/supo-work-template/template/mrw_preamble.tex'}
+  \ {'q': '~/.vimrc'},
+  \ {'u': '~/UNI/supo-work-template/template/mrw_preamble.tex'}
   \ ]
 let g:startify_session_autoload = 1
