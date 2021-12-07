@@ -467,28 +467,28 @@ endsnippet
 
 ########## BRACKETS ##########
 context "math()"
-snippet () "left( right)" iA
+snippet () "left( right)" i
 \left( ${1:${VISUAL}} \right)$0
 endsnippet
 
 # brackets with left/right
 context "math()"
-snippet @( "Round brackets" i
+snippet @( "Round brackets" iA
 \left ( $1 \right )$0
 endsnippet
 
 context "math()"
-snippet @[ "Square brackets" i
+snippet @[ "Square brackets" iA
 \left [ $1 \right ]$0
 endsnippet
 
 context "math()"
-snippet @{ "Curly brackets" i
+snippet @{ "Curly brackets" iA
 \left { $1 \right }$0
 endsnippet
 
 context "math()"
-snippet @< "Angle brackets" i
+snippet @< "Angle brackets" iA
 \langle $1 \rangle$0
 endsnippet
 
@@ -524,11 +524,13 @@ endsnippet
 
 
 ########## OTHER ##########
-snippet ... "ldots" wA
+priority 10
+snippet ... "ldots" iA
 \ldots
 endsnippet
 
-snippet \... "literal ellipsis" wA
+priority 100
+snippet \... "literal ellipsis" iA
 ...
 endsnippet
 
