@@ -302,3 +302,10 @@ if executable(s:clip)
     au TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
   augroup END
 endif
+
+" ##### startify #####
+let g:startify_bookmarks = [
+  \ {'v': '~/.vimrc'},
+  \ {'t': '~/UNI/supo-work-template/template/mrw_preamble.tex'}
+  \ ]
+let g:startify_session_autoload = 1
