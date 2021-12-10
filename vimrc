@@ -56,6 +56,9 @@ vnoremap <A-k> :m'<-2<CR>gv=gv
 map <A-Down> <A-j>
 map <A-Up> <A-k>
 
+" find and replace all occurrences of word under cursor
+nnoremap <F6> :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " mouse support
 set mouse=a
 set ttymouse=sgr
