@@ -313,3 +313,8 @@ let g:startify_bookmarks = [
   \ {'u': '~/UNI/supo-work-template/template/mrw_preamble.tex'}
   \ ]
 let g:startify_session_autoload = 1
+
+augroup TerminalConfig
+  au!
+  au TerminalOpen * setlocal nonumber foldcolumn=0
+augroup END
