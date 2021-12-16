@@ -37,3 +37,6 @@
 [submodule "pack/mrw/start/vim-startify"]
 	path = pack/mrw/start/vim-startify
 	url = https://github.com/mhinz/vim-startify.git
+[submodule "pack/mrw/start/terminus"]
+	path = pack/mrw/start/terminus
+	url = https://github.com/wincent/terminus.git

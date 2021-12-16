@@ -282,6 +282,7 @@ let g:goyo_height = '100%'
 autocmd! User GoyoEnter nested call lightline#enable()
 
 " ##### vim-commentary #####
+" ctrl-/
 nmap <c-_> gcc
 imap <c-_> <c-o>gcc
 vmap <c-_> gc
@@ -319,3 +320,9 @@ augroup TerminalConfig
   au!
   au TerminalOpen * setlocal nonumber foldcolumn=0
 augroup END
+
+" ##### Terminus #####
+" enable cursor shape changes
+let g:TerminusCursorShape = 1
+" disable Terminus trying to improve mouse function
+let g:TerminusMouse = 0
