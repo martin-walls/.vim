@@ -1,27 +1,126 @@
-" use 2 spaces for tab
-set tabstop=2
-set shiftwidth=2
-" turn tabs into spaces
-set expandtab
-" show line numbers
-set number
-set autoindent
+" vim:foldmethod=marker
+
+" set <leader> to <space>
+let mapleader=" "
+
+" ┌────────────────┐
+" │ Basic settings │
+" └────────────────┘
+" {{{
 set nocompatible
 
+" Tabs/spaces
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+" turn tabs into spaces
+set expandtab
+set autoindent
+
+" show line numbers
+set number
+
+" make splits natural
 set splitright
 set splitbelow
 
+" vertical window separator between splits
+set fillchars+=vert:┃
+
+" show whitespace: tabs, trailing spaces
 set list
 set listchars=tab:»-,trail:·
 
+" tab completion
+set wildmode=longest,list,full
+
 " don't wrap in middle of word
 set linebreak
+
+" mouse support
+set mouse=a
+set ttymouse=sgr
+set ttyfast
+
+" Code folding
+" save code folds between sessions
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
+set foldmethod=manual
+" show folds left of line numbers; can be opened/closed w/ mouse
+set foldcolumn=2
+" fold: chars at end of line on closed fold
+" foldopen, foldsep: foldcolumn chars
+set fillchars+=fold:\ ,foldopen:┍,foldsep:│
+" minimum number of lines for FastFold to be enabled
+let g:fastfold_minlines=0
+
+" Change cursor shape in different modes (Terminus)
+let g:TerminusCursorShape = 1
+" disable Terminus trying to improve mouse function
+let g:TerminusMouse = 0
+
+" }}}
+
+" ┌────────┐
+" │ Colors │
+" └────────┘
+" {{{
+" 24-bit colour support
+set termguicolors
+syntax on
+let g:onedark_hide_endofbuffer=1
+let g:onedark_terminal_italics=1
+colorscheme onedark
+
+" remove background, to respect terminal transparency
+hi Normal ctermbg=NONE guibg=NONE
+
+" }}}
+
+" ┌──────────┐
+" │ Mappings │
+" └──────────┘
+" {{{
+" find and replace all occurrences of word under cursor
+nnoremap <F6> :%s/\<<C-r><C-w>\>//g<Left><Left>
+" general find and replace shortcut
+nnoremap S :%s//g<Left><Left>
+
+" add undo action per word
+inoremap <Space> <Space><C-g>u
+inoremap <c-w> <c-g>u<c-w>
+inoremap <c-u> <c-g>u<c-u>
+
+" add brackets around visual selection
+vnoremap { xi{}<Esc>P
+vnoremap ( xi()<Esc>P
+vnoremap [ xi[]<Esc>P
+
+" --commentary--
+" ctrl-/
+nmap <c-_> gcc
+imap <c-_> <c-o>gcc
+vmap <c-_> gc
+" alternate comment shortcut for normal/fold modes
+nmap <leader>c gcc
+vmap <leader>c gc
+
+" --bufferlist--
+map <silent> <F3> :call BufferList()<CR>
+
+" }}}
+
+" ┌──────────┐
+" │ Movement │
+" └──────────┘
+" {{{
 " move up/down one line as it appears on screen
 noremap <Up> gk
 noremap <Down> gj
 inoremap <Up> <c-o>gk
 inoremap <Down> <c-o>gj
-" same for home/end
+" home/end for line as it appears on screen
 set <Home>=OH
 set <End>=OF
 noremap <Home> g^
@@ -29,21 +128,13 @@ noremap <End> g$
 inoremap <Home> <c-o>g^
 inoremap <End> <c-o>g$
 
-" go into normal mode in terminal
-if exists(':tnoremap')
-  tnoremap <Esc><Esc> <c-\><c-n>
-endif
-
-" navigate between windows
+" Window navigation shortcuts
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
-" open terminal in vertical split
-command Vter vert ter
-
-" move lines up/down (and reindent to match new pos)
+" Move lines up/down (and reindent to match new pos)
 set <A-j>=j
 set <A-k>=k
 nnoremap <A-j> :m.+1<CR>==
@@ -56,90 +147,53 @@ vnoremap <A-k> :m'<-2<CR>gv=gv
 map <A-Down> <A-j>
 map <A-Up> <A-k>
 
-" find and replace all occurrences of word under cursor
-nnoremap <F6> :%s/\<<C-r><C-w>\>//g<Left><Left>
+" }}}
 
-" mouse support
-set mouse=a
-set ttymouse=sgr
-set ttyfast
+" ┌──────────────────┐
+" │ General AutoCmds │
+" └──────────────────┘
+" {{{
+augroup GeneralAutocmd
+  au!
+  " automatically center screen in insert mode
+  au InsertEnter * norm zz
+  " strip trailing spaces on save
+  au BufWritePre * %s/\s\+$//e
+augroup END
 
-let g:netrw_dirhistmax=0
+" }}}
 
-" ##### explorer #####
-" hide top banner
-let g:netrw_banner = 0
-" open files in new vertical split
-let g:netrw_browse_split = 2
-" set % width
-let g:netrw_winsize = 25
-
-" save code folds between sessions
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
-set foldmethod=manual
-" show folds left of line numbers; can be opened/closed w/ mouse
-set foldcolumn=2
-" foldcol chars
-set fillchars+=foldopen:┍,foldsep:│
-
-" vertical window separator
-set fillchars+=vert:┃
-
-" add undo action per word
-inoremap <Space> <Space><C-g>u
-inoremap <c-w> <c-g>u<c-w>
-inoremap <c-u> <c-g>u<c-u>
-
-" ########## color scheme ##########
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-syntax on
-let g:onedark_hide_endofbuffer=1
-let g:onedark_terminal_italics=1
-colorscheme onedark
-
-" ##### vimtex #####
+" ┌───────┐
+" │ LaTeX │
+" └───────┘
+" {{{
 let g:tex_flavor='latex'
 set conceallevel=1
+" a = accents/ligatures
+" b = bold & italic
+" d = delimiters
+" g = greek
+" other opts:
+"   m = math symbols
+"   s = superscripts/subscripts
 let g:tex_conceal='abdg'
 " disable unreadable conceals
 let g:vimtex_syntax_conceal = {
-  \ 'math_fracs': 0,
-  \ 'math_super_sub': 0
-  \ }
+      \ 'math_fracs': 0,
+      \ 'math_super_sub': 0
+      \ }
+" Use XeLaTeX
 let g:vimtex_compiler_latexmk_engines = {
-  \ '_' : '-xelatex'
-  \ }
+      \ '_' : '-xelatex'
+      \ }
 
 " tex folding
-" let g:vimtex_fold_enabled=1
-" set foldmethod=expr
-" set foldexpr=vimtex#fold#level(v:lnum)
-" set foldtext=vimtex#fold#text()
-set fillchars+=fold:\ 
-" let g:vimtex_fold_manual=1
 let g:vimtex_fold_types = {
-  \ 'envs': {
-  \   'blacklist': ['enumerate', 'itemize', 'lstlisting'],
-  \   'whitelist': ['examquestion'],
-  \ },
-  \ }
-let g:fastfold_minlines=0
+      \ 'envs': {
+        \   'blacklist': ['enumerate', 'itemize', 'lstlisting'],
+        \   'whitelist': ['examquestion'],
+        \ },
+        \ }
 
 " auto compile and clean
 augroup vimtex_auto_compile_clean
@@ -148,15 +202,37 @@ augroup vimtex_auto_compile_clean
   " au User VimtexEventInitPost VimtexCompile
 augroup END
 
+" }}}
 
-" ##### UltiSnips #####
+" ┌──────────────────┐
+" │ Explorer (Netrw) │
+" └──────────────────┘
+" {{{
+let g:netrw_dirhistmax=0
+" hide top banner
+let g:netrw_banner = 0
+" open files in new vertical split
+let g:netrw_browse_split = 2
+" set % width
+let g:netrw_winsize = 25
+
+" }}}
+
+" ┌──────────────────────┐
+" │ Snippets (UltiSnips) │
+" └──────────────────────┘
+" {{{
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsEditSplit = 'context'
+" }}}
 
-
-" ##### MUComplete #####
+" ┌─────────────────────────────────────────────┐
+" │ Autocompletion (MUComplete, Clang Complete) │
+" └─────────────────────────────────────────────┘
+" {{{
+" --MUComplete--
 let g:mucomplete#chains = {
   \ 'default' : ['path', 'omni', 'keyn', 'dict'],
   \ 'vim'     : ['path', 'cmd', 'keyn'],
@@ -169,22 +245,28 @@ set completeopt+=menuone,noselect
 set shortmess+=c
 set noinfercase
 let g:mucomplete#enable_auto_at_startup = 1
+" CapsLock mapped to <F2> for completion
 imap <f2> <plug>(MUcompleteFwd)
 imap <s-f2> <plug>(MUcompleteBwd)
 " when popup menu visible, enter selects highlighted item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" ### clang complete ###
+" --clang complete--
 let g:clang_library_path = '/usr/lib/llvm-10/lib'
 let g:clang_complete_auto = 1
 let g:clang_close_preview = 1
 
-" ##### Pear Tree #####
+" }}}
+
+" ┌──────────────────────────────┐
+" │ Bracket Matching (Pear Tree) │
+" └──────────────────────────────┘
+" {{{
 " custom pairs to auto close
 let g:pear_tree_pairs = {
-  \ '(': {'closer': ')'}, 
-  \ '[': {'closer': ']'}, 
-  \ '{': {'closer': '}'}, 
+  \ '(': {'closer': ')'},
+  \ '[': {'closer': ']'},
+  \ '{': {'closer': '}'},
   \ "'": {'closer': "'"},
   \ '"': {'closer': '"'},
   \ '/\*': {'closer': '\*/'},
@@ -198,8 +280,12 @@ let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 let g:pear_tree_repeatable_expand = 0
 
+" }}}
 
-" ##### lightline #####
+" ┌───────────┐
+" │ Lightline │
+" └───────────┘
+" {{{
 " make lightline show
 set laststatus=2
 " disable default -- INSERT -- etc
@@ -213,7 +299,7 @@ let g:lightline = {
   \   'right': [ [], [ 'percent', 'lineinfo' ], [ 'filetype' ] ]
   \ },
   \ 'inactive': {
-  \   'left': [[ 'filename', 'modified' ]] 
+  \   'left': [[ 'filename', 'modified' ]]
   \ },
   \ 'component_function': {
   \   'gitbranch': 'FugitiveHead',
@@ -259,70 +345,105 @@ function! LightlineMode() abort
   return get(ftmap, &filetype, lightline#mode())
 endfunction
 
+" }}}
 
-
-" ##### bufferlist #####
-map <silent> <F3> :call BufferList()<CR>
-
-
-" ##### spellcheck #####
+" ┌────────────┐
+" │ Spellcheck │
+" └────────────┘
+" {{{
 set spelllang=en
-"au FileType tex setlocal noautoindent 
-"au FileType tex setlocal nocindent 
+"au FileType tex setlocal noautoindent
+"au FileType tex setlocal nocindent
 "au FileType tex setlocal indentexpr=
 
 " snippets file syntax highlighting
 " au BufNewFile,BufRead *.snippets set ft=snippets
 " au FileType snippets setlocal syntax=snippets
 
+" }}}
 
-" ##### Goyo.vim #####
+" ┌───────────────────┐
+" │ Filetype AutoCmds │
+" └───────────────────┘
+" {{{
+" Snippets
+augroup filetype_autocmds
+  au!
+  au BufNewFile,BufRead *.snippets set filetype=snippets
+augroup END
+" }}}
+
+" ┌──────┐
+" │ Goyo │
+" └──────┘
+" {{{
 let g:goyo_width = '120'
 let g:goyo_height = '100%'
 autocmd! User GoyoEnter nested call lightline#enable()
+" }}}
 
-" ##### vim-commentary #####
-" ctrl-/
-nmap <c-_> gcc
-imap <c-_> <c-o>gcc
-vmap <c-_> gc
-
-" add brackets around visual selection
-vnoremap { xi{}<Esc>P
-vnoremap ( xi()<Esc>P
-vnoremap [ xi[]<Esc>P
-
+" ┌────────────────┐
+" │ File templates │
+" └────────────────┘
+" {{{
 " supo work template
-augroup supo_work_template
+augroup file_templates
   au!
+  " Supo work template and preamble
   au BufNewFile mrw64*.tex 0r ~/.vim/templates/supotemplate.tex
   au BufNewFile preamble.tex 0r ~/.vim/templates/supopreamble.tex
 augroup END
+" }}}
 
-" WSL clipboard support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-  augroup WslYank
-    au!
-    au TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-  augroup END
+" ┌───────────────────────┐
+" │ WSL Specific Settings │
+" └───────────────────────┘
+" {{{
+let uname = substitute(system('uname'),'\n','','')
+if uname == 'Linux'
+  let lines = readfile("/proc/version")
+  if lines[0] =~ "Microsoft"
+    " in WSL
+
+    " WSL clipboard support
+    let s:clip = '/mnt/c/Windows/System32/clip.exe'
+    if executable(s:clip)
+      augroup WslYank
+        au!
+        au TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+      augroup END
+    endif
+
+  endif
 endif
+" }}}
 
-" ##### startify #####
+" ┌─────────────────────────┐
+" │ Start Screen (Startify) │
+" └─────────────────────────┘
+" {{{
 let g:startify_bookmarks = [
   \ {'c': '~/.vimrc'},
   \ {'g': '~/.gvimrc'},
   \ {'u': '~/UNI/supo-work-template/template/mrw_preamble.tex'}
   \ ]
 let g:startify_session_autoload = 1
+" }}}
 
+" ┌───────────────────────────┐
+" │ Inbuilt Terminal Settings │
+" └───────────────────────────┘
+" {{{
 augroup TerminalConfig
   au!
   au TerminalOpen * setlocal nonumber foldcolumn=0
 augroup END
 
-" ##### Terminus #####
-" enable cursor shape changes
-let g:TerminusCursorShape = 1
-" disable Terminus trying to improve mouse function
-let g:TerminusMouse = 0
+" go into normal mode in terminal
+if exists(':tnoremap')
+  tnoremap <Esc><Esc> <c-\><c-n>
+endif
+
+" open terminal in vertical split
+command Vter vert ter
+" }}}
