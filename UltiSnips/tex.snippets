@@ -15,6 +15,7 @@ def list():
 endglobal
 
 
+
 ########## ENVIRONMENTS ##########
 # generic environment snippet
 snippet beg "Begin/end environment" bA
@@ -39,7 +40,7 @@ snippet "(\d+)(t?)ben" "enumerate" brA
 \begin{enumerate}
 \item % (1)`!p snip.rv = " TODO" if match.group(2) else ""`
 $0
-`!p 
+`!p
 snip.rv = ''
 numitems = max(int(match.group(1)), 1) - 1
 for i in range(numitems):
@@ -109,7 +110,7 @@ endsnippet
 snippet "(\d+)bit" "Itemize environment" brA
 \begin{itemize}
 \item $0
-`!p 
+`!p
 snip.rv = ''
 numitems = max(int(match.group(1)), 1) - 1
 for i in range(numitems):
@@ -169,7 +170,7 @@ endsnippet
 
 snippet "btbl(\d+)x(\d+)" "tabular mxn" wrA
 \begin{tabular}{`!p snip.rv = 'c'*int(match.group(1))`}
-$0`!p 
+$0`!p
 row = ' & ' * (int(match.group(1)) - 1) + ' \\\\'
 snip.rv = (row + '\n') * (int(match.group(2)) - 1) + row
 `
