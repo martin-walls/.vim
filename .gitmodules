@@ -46,3 +46,6 @@
 [submodule "pack/mrw/start/floaterm"]
 	path = pack/mrw/start/floaterm
 	url = https://github.com/voldikss/vim-floaterm.git
+[submodule "pack/mrw/start/arduino]"]
+	path = pack/mrw/start/arduino]
+	url = https://github.com/stevearc/vim-arduino.git
