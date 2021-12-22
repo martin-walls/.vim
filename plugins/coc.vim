@@ -1,6 +1,5 @@
 let g:coc_global_extensions = [
   \ 'coc-marketplace',
-  \ 'coc-git',
   \ 'coc-pyright',
   \ 'coc-html',
   \ 'coc-css',
@@ -9,6 +8,7 @@ let g:coc_global_extensions = [
   \ 'coc-java',
   \ 'coc-texlab'
   \ ]
+" \ 'coc-git',
 
 " Some servers have issues with backup files, see #649.
 set nobackup
