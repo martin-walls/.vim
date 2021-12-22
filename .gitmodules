@@ -43,3 +43,6 @@
 [submodule "pack/mrw/start/coc"]
 	path = pack/mrw/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "pack/mrw/start/floaterm"]
+	path = pack/mrw/start/floaterm
+	url = https://github.com/voldikss/vim-floaterm.git
