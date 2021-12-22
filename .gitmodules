@@ -40,3 +40,6 @@
 [submodule "pack/mrw/start/terminus"]
 	path = pack/mrw/start/terminus
 	url = https://github.com/wincent/terminus.git
+[submodule "pack/mrw/start/coc"]
+	path = pack/mrw/start/coc
+	url = https://github.com/neoclide/coc.nvim.git
