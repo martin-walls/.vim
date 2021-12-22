@@ -3,40 +3,34 @@
 " set <leader> to <space>
 let mapleader=" "
 
-" ┌────────────────┐
-" │ Basic settings │
-" └────────────────┘
+" ┌──────────────────┐
+" │ General settings │
+" └──────────────────┘
 " {{{
 set nocompatible
-
-" Tabs/spaces
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-" turn tabs into spaces
 set expandtab
 set autoindent
-
-" show line numbers
 set number
-
-" make splits natural
 set splitright
 set splitbelow
-
+set title
+set titlestring=%t%m
+set scrolloff=8
+set sidescrolloff=8
+set hidden
+set clipboard=unnamedplus
 " vertical window separator between splits
 set fillchars+=vert:┃
-
 " show whitespace: tabs, trailing spaces
 set list
 set listchars=tab:»-,trail:·
-
 " tab completion
 set wildmode=longest,list,full
-
 " don't wrap in middle of word
 set linebreak
-
 " mouse support
 set mouse=a
 set ttymouse=sgr
@@ -108,6 +102,9 @@ vmap <leader>c gc
 
 " --bufferlist--
 map <silent> <F3> :call BufferList()<CR>
+
+" reload vimrc
+nnoremap <leader>R :source $MYVIMRC<CR>
 
 " }}}
 
@@ -244,10 +241,10 @@ let g:mucomplete#tab_when_no_results = 1
 set completeopt+=menuone,noselect
 set shortmess+=c
 set noinfercase
-let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#enable_auto_at_startup = 1
 " CapsLock mapped to <F2> for completion
-imap <f2> <plug>(MUcompleteFwd)
-imap <s-f2> <plug>(MUcompleteBwd)
+" imap <f2> <plug>(MUcompleteFwd)
+" imap <s-f2> <plug>(MUcompleteBwd)
 " when popup menu visible, enter selects highlighted item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -446,4 +443,12 @@ endif
 
 " open terminal in vertical split
 command Vter vert ter
+" }}}
+
+" ┌─────────┐
+" │ Plugins │
+" └─────────┘
+" {{{
+source ~/.vim/plugins/coc.vim
+source ~/.vim/plugins/floaterm.vim
 " }}}
