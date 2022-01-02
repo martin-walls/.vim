@@ -3,6 +3,7 @@
 " └───────┘
 
 let g:tex_flavor='latex'
+" let g:vimtex_view_method='zathura'
 
 " ┌──────────┐
 " │ Conceals │
@@ -16,7 +17,9 @@ let g:vimtex_syntax_conceal = {
       \ }
 " Use XeLaTeX
 let g:vimtex_compiler_latexmk_engines = {
-      \ '_' : '-xelatex'
+      \ '_': '-xelatex',
+      \ 'lualatex': '-lualatex',
+      \ 'pdflatex': '-pdf'
       \ }
 
 

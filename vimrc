@@ -20,6 +20,7 @@ set title
 set titlestring=%t%m
 set scrolloff=8
 set sidescrolloff=8
+" set cursorline  # moved to autocmds below
 " set hidden
 set autowrite
 set autowriteall
@@ -158,9 +159,18 @@ map <A-Up> <A-k>
 augroup GeneralAutocmd
   au!
   " automatically center screen in insert mode
-  au InsertEnter * norm zz
+  " au InsertEnter * norm zz
   " strip trailing spaces on save
   au BufWritePre * %s/\s\+$//e
+augroup END
+
+" cursorline only in focused window
+augroup CursorLine
+  au!
+  au VimEnter * setlocal cursorline
+  au WinEnter * setlocal cursorline
+  au BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
 augroup END
 
 " }}}
