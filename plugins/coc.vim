@@ -6,7 +6,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-clangd',
   \ 'coc-java',
-  \ 'coc-texlab'
+  \ 'coc-texlab',
+  \ 'coc-snippets'
   \ ]
 " \ 'coc-git',
 
