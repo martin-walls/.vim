@@ -178,36 +178,6 @@ augroup END
 
 " }}}
 
-" ┌─────────────────────────────────────────────┐
-" │ Autocompletion (MUComplete, Clang Complete) │
-" └─────────────────────────────────────────────┘
-" {{{
-" --MUComplete--
-" let g:mucomplete#chains = {
-"   \ 'default' : ['path', 'omni', 'keyn', 'dict'],
-"   \ 'vim'     : ['path', 'cmd', 'keyn'],
-"   \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict']
-"   \ }
-" \ 'tex'     : ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
-" if no results from autocompletion, insert a literal tab
-" let g:mucomplete#tab_when_no_results = 1
-" set completeopt+=menuone,noselect
-" set shortmess+=c
-" set noinfercase
-" let g:mucomplete#enable_auto_at_startup = 1
-" CapsLock mapped to <F2> for completion
-" imap <f2> <plug>(MUcompleteFwd)
-" imap <s-f2> <plug>(MUcompleteBwd)
-" when popup menu visible, enter selects highlighted item
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" --clang complete--
-" let g:clang_library_path = '/usr/lib/llvm-10/lib'
-" let g:clang_complete_auto = 1
-" let g:clang_close_preview = 1
-
-" }}}
-
 " ┌────────────┐
 " │ Spellcheck │
 " └────────────┘
