@@ -18,7 +18,7 @@ set splitright
 set splitbelow
 set title
 set titlestring=%t%m
-set scrolloff=8
+set scrolloff=6
 set sidescrolloff=8
 " set cursorline  # moved to autocmds below
 " set hidden
@@ -67,7 +67,9 @@ let g:onedark_terminal_italics=1
 colorscheme onedark
 
 " remove background, to respect terminal transparency
-hi Normal ctermbg=NONE guibg=NONE
+if !has("gui_running")
+  hi Normal ctermbg=NONE guibg=NONE
+endif
 
 " }}}
 
