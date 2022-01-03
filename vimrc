@@ -49,6 +49,7 @@ set foldcolumn=2
 " fold: chars at end of line on closed fold
 " foldopen, foldsep: foldcolumn chars
 set fillchars+=fold:\ ,foldopen:┍,foldsep:│
+set foldtext=gitgutter#fold#foldtext()
 " minimum number of lines for FastFold to be enabled
 let g:fastfold_minlines=0
 
@@ -303,4 +304,5 @@ source ~/.vim/plugins/pear-tree.vim
 source ~/.vim/plugins/lightline.vim
 source ~/.vim/plugins/goyo.vim
 source ~/.vim/plugins/terminus.vim
+source ~/.vim/plugins/gitgutter.vim
 " }}}

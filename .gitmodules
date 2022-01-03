@@ -46,3 +46,6 @@
 [submodule "pack/mrw/start/arduino]"]
 	path = pack/mrw/start/arduino]
 	url = https://github.com/stevearc/vim-arduino.git
+[submodule "pack/mrw/start/gitgutter"]
+	path = pack/mrw/start/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
