@@ -39,6 +39,11 @@ set mouse=a
 set ttymouse=sgr
 set ttyfast
 
+" vim:foldmethod=marker
+
+" set <leader> to <space>
+let mapleader=" "
+
 " Code folding
 " save code folds between sessions
 " autocmd BufWinLeave *.* mkview
@@ -275,4 +280,8 @@ source ~/.vim/plugins/lightline.vim
 source ~/.vim/plugins/goyo.vim
 source ~/.vim/plugins/terminus.vim
 source ~/.vim/plugins/gitgutter.vim
+
+" for clang_complete
+" let g:clang_library_path = '/usr/lib/llvm-10/lib'
+
 " }}}
