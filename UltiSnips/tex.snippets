@@ -761,4 +761,21 @@ $0
 endsnippet
 
 
+# ┌───────────────┐
+# │ Exam template │
+# └───────────────┘
+snippet examtemplate "Exam template" wA
+\documentclass[12pt,a4paper]{article}
+
+\newcommand{\papernumber}{$1}
+\newcommand{\questionnumber}{$2}
+\newcommand{\studentid}{$3}
+
+\input{\string ~/UNI/supo-work-template/template/exampreamble.tex}
+
+\begin{document}
+$0
+\end{document}
+endsnippet
+
 # vim:ft=snippets
