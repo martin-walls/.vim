@@ -3,7 +3,7 @@
 " └───────┘
 
 let g:tex_flavor='latex'
-" let g:vimtex_view_method='zathura'
+let g:vimtex_view_method='zathura'
 
 " ┌──────────┐
 " │ Conceals │
@@ -41,3 +41,11 @@ augroup vimtex_auto_compile_clean
   au User VimtexEventQuit VimtexClean
   " au User VimtexEventInitPost VimtexCompile
 augroup END
+
+" ┌──────────────────┐
+" │ Ignored warnings │
+" └──────────────────┘
+let g:vimtex_quickfix_ignore_filters = [
+  \ "\\fancy.*option without twoside",
+  \ "Marginpar on page",
+  \ ]
