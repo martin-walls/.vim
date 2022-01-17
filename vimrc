@@ -39,11 +39,6 @@ set mouse=a
 set ttymouse=sgr
 set ttyfast
 
-" vim:foldmethod=marker
-
-" set <leader> to <space>
-let mapleader=" "
-
 " Code folding
 " save code folds between sessions
 " autocmd BufWinLeave *.* mkview
