@@ -49,9 +49,6 @@
 [submodule "pack/mrw/start/vimwiki"]
 	path = pack/mrw/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-[submodule "pack/mrw/start/bullets"]
-	path = pack/mrw/start/bullets
-	url = https://github.com/dkarter/bullets.vim.git
 [submodule "pack/mrw/start/dirsettings"]
 	path = pack/mrw/start/dirsettings
 	url = https://github.com/chazy/dirsettings.git
