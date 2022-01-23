@@ -17,3 +17,8 @@ call extend(b:pear_tree_pairs, g:pear_tree_pairs)
 " add bold/italic around visual selection
 vnoremap <leader>b xi****<Esc><Left>P
 vnoremap <leader>i xi**<Esc>P
+
+" map <F2> call UltiSnips#ExpandSnippetOrJump()
+" noremap <s-F4> call UltiSnips#JumpBackwards()
+
+" let g:vimwiki_table_mappings = 0
