@@ -4,13 +4,22 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-json',
-  \ 'coc-rome',
   \ 'coc-clangd',
   \ 'coc-java',
   \ 'coc-texlab',
-  \ 'coc-snippets'
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-lists'
   \ ]
 " \ 'coc-git',
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -73,8 +82,23 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+function! CocShowDocumentationIfNoDiagnostic(timer_id)
+  if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
+    silent call <SID>show_documentation()
+  endif
+endfunction
+
+function s:show_hover_documentation()
+  call timer_start(500, 'CocShowDocumentationIfNoDiagnostic')
+endfunction
+
+augroup CocCursorHoldActions
+  au!
+  " Highlight the symbol and its references when holding the cursor.
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+  autocmd CursorHoldI * :call <SID>show_hover_documentation()
+  autocmd CursorHold * :call <SID>show_hover_documentation()
+augroup END
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -82,5 +106,11 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" Code actions
+nnoremap <leader>do <Plug>(coc-codeaction)
+
+" Diagnostics
+nnoremap <silent> <leader>dg :CocList diagnostics<CR>
 
 let g:coc_filetype_map = {'tex': 'latex'}
