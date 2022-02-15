@@ -127,6 +127,12 @@ $0
 \end{examquestion}
 endsnippet
 
+snippet bqst "Question environment" bA
+\begin{question}[$1 marks]
+$0
+\end{question}
+endsnippet
+
 snippet bfr "Frame environment" bA
 \begin{frame}
 \frametitle{$1}
@@ -332,6 +338,16 @@ snippet |- "vdash" iA
 \vdash
 endsnippet
 
+context "math()"
+snippet |= "vDash" iA
+\vDash
+endsnippet
+
+context "math()"
+snippet ¬ "neg" iA
+\neg $0
+endsnippet
+
 
 ########## EQUALITY ##########
 # align equals
@@ -348,6 +364,11 @@ endsnippet
 context "math()"
 snippet ~= "approx" iA
 \approx
+endsnippet
+
+context "math()"
+snippet =~ "simeq" iA
+\simeq
 endsnippet
 
 context "math()"
@@ -401,6 +422,12 @@ context "math()"
 priority 100
 snippet <-- "long left arrow" iA
 \longleftarrow
+endsnippet
+
+context "math()"
+priority 100
+snippet lr-> "left right arrow" iA
+\leftrightarrow
 endsnippet
 
 
@@ -485,7 +512,12 @@ endsnippet
 
 context "math()"
 snippet @{ "Curly brackets" iA
-\left { $1 \right }$0
+\left \{ $1 \right \}$0
+endsnippet
+
+context "math()"
+snippet \{ "curly brackets escape" iA
+\\{ $0 \\}
 endsnippet
 
 context "math()"
@@ -602,8 +634,14 @@ endsnippet
 snippet fbf "bold text" w
 \textbf{${1:${VISUAL}}}$0
 endsnippet
+priority 10
 snippet \bf "bold text" wA
 \textbf{${1:${VISUAL}}}$0
+endsnippet
+context "math()"
+priority 100
+snippet \bf "bold text" wA
+\mathbf{${1:${VISUAL}}}$0
 endsnippet
 
 snippet fit "italic text" w
@@ -625,7 +663,7 @@ snippet \sf "sans serif text" wA
 endsnippet
 
 context "math()"
-snippet \bb "mathbb" wA
+snippet \bb "mathbb" iA
 \mathbb{${1:${VISUAL}}}$0
 endsnippet
 
