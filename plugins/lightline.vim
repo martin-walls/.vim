@@ -12,13 +12,13 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified' ] ],
-  \   'right': [ [], [ 'percent', 'lineinfo' ], [ 'filetype' ] ]
+  \   'right': [ [ 'gitbranch' ], [ 'percent', 'lineinfo' ], [ 'filetype' ] ]
   \ },
   \ 'inactive': {
   \   'left': [[ 'filename', 'modified' ]]
   \ },
   \ 'component_function': {
-  \   'gitbranch': 'FugitiveHead',
+  \   'gitbranch': 'gitbranch#name',
   \   'lineinfo': 'LightlineLineInfo',
   \   'percent': 'LightlinePercent',
   \   'filetype': 'LightlineFiletype',

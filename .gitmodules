@@ -55,3 +55,6 @@
 [submodule "pack/mrw/start/TaskList"]
 	path = pack/mrw/start/TaskList
 	url = https://github.com/vim-scripts/TaskList.vim.git
+[submodule "pack/mrw/start/gitbranch"]
+	path = pack/mrw/start/gitbranch
+	url = https://github.com/itchyny/vim-gitbranch.git
