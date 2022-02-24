@@ -18,7 +18,7 @@ let g:lightline = {
   \   'left': [[ 'filename', 'modified' ]]
   \ },
   \ 'component_function': {
-  \   'gitbranch': 'gitbranch#name',
+  \   'gitbranch': 'LightlineGitBranch',
   \   'lineinfo': 'LightlineLineInfo',
   \   'percent': 'LightlinePercent',
   \   'filetype': 'LightlineFiletype',
@@ -59,4 +59,12 @@ function! LightlineMode() abort
         \ 'netrw': 'EXPLORER'
         \ }
   return get(ftmap, &filetype, lightline#mode())
+endfunction
+
+function LightlineGitBranch() abort
+  if winwidth(0) < 75
+    return ''
+  endif
+
+  return gitbranch#name()
 endfunction
