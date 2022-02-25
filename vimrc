@@ -32,6 +32,7 @@ set list
 set listchars=tab:»-,trail:·
 " tab completion
 set wildmode=longest,list,full
+set wildignorecase
 " don't wrap in middle of word
 set linebreak
 " mouse support
