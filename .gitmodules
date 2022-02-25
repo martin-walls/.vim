@@ -58,3 +58,6 @@
 [submodule "pack/mrw/start/gitbranch"]
 	path = pack/mrw/start/gitbranch
 	url = https://github.com/itchyny/vim-gitbranch.git
+[submodule "pack/mrw/start/vim-kitty-navigator"]
+	path = pack/mrw/start/vim-kitty-navigator
+	url = https://github.com/knubie/vim-kitty-navigator.git
