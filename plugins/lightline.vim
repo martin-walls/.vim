@@ -66,5 +66,5 @@ function LightlineGitBranch() abort
     return ''
   endif
 
-  return gitbranch#name()
+  return " " . gitbranch#name()
 endfunction
